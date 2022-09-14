@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        .exchanger {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .line {
+            margin-bottom: 20px;
+
+            display: flex;
+            flex-direction: column;
+        }
+        
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        #canbuy {
+            background-color: #fff;
+            color: #000;
+            border: none;
+        }
+
+    </style>
+
+<body>
+    
+    <div class="exchanger">
+        <div class="line">
+            <label for="btcprice">What is Bitcoin price today?</label>
+            <input id="btcprice" type="number" value="21000">
+        </div>
+        <div class="line">
+            <label for="usdhave">How much $ do you have?</label>
+            <input id="usdhave" type="number" value="1000">
+        </div>
+        <div class="line2">
+            <label for="canbuy">You can buy</label>
+            <input id="canbuy" type="text" value="" disabled>
+        </div>
+    </div>
+
+
+    <script>
+        let btcprice = document.getElementById('btcprice');
+        let usdhave = document.getElementById('usdhave');
+        let canbuy = document.getElementById('canbuy');
+
+        btcprice.oninput = calculate;
+        usdhave.oninput = calculate;
+
+        function calculate() {
+            let first = Number(btcprice.value);
+
+            let second = Number(usdhave.value);
+
+            
+            let result = (second / first).toFixed(7) + ' BTC';
+            canbuy.value = result;
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
